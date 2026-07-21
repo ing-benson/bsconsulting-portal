@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+
+  # -------- Reverse proxy (point d'entrée public) --------
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: bsconsulting_nginx
+    restart: unless-stopped
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - web
+    networks:
+      - bsconsulting_net
+
+  # -------- Apache + PHP (site + API formulaire de contact) --------
+  web:
+    build:
+      context: ./web
+    container_name: bsconsulting_web
+    restart: unless-stopped
+    volumes:
+      - ./web/public/:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bsconsulting_net
+    # Pas de port publié : uniquement accessible via nginx
+
+  # -------- Base de données --------
+  db:
+    image: mysql:8.0
+    container_name: bsconsulting_db
+    restart: unless-stopped
+    ports:
+      - 3305:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - bsconsulting_net
+
+  # -------- Administration de la base (optionnel) --------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: bsconsulting_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${PHPMYADMIN_PORT:-8081}:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bsconsulting_net
+
+networks:
+  bsconsulting_net:
+    driver: bridge
+
+volumes:
+  db_data:
