@@ -1,0 +1,31 @@
+name: "SSH Runner"
+description: "Execute a script on remote server"
+
+inputs:
+  host:
+    required: true
+    description: "Remote server host"
+  username:
+    required: true
+    description: "Remote server username"
+  key:
+    required: true
+    description: "Private SSH key"
+  port:
+    required: true
+    description: "SSH port"
+  script:
+    required: true
+    description: "Script to run"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run SSH Command
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ inputs.host }}
+        username: ${{ inputs.username }}
+        key: ${{ inputs.key }}
+        port: ${{ inputs.port }}
+        script: ${{ inputs.script }}

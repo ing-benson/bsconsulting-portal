@@ -1,0 +1,90 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main  
+env:
+  APP_NAME: "bsconsulting-portal"
+  APP_DIR: "/opt/apps"
+  REPO_URL: "/opt/apps"
+  CONTAINER_NAME: 'bsconsulting-portal'
+jobs:
+  download-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        # uses: ./.github/actions/ssh-run
+        with:
+          host: ${{ vars.REMOTE_SERVER_HOST }}
+          username: ${{ vars.REMOTE_SERVER_USER }}
+          key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
+          port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
+          script: |
+            set -e 
+            sudo mkdir -p ${{ env.APP_DIR }}
+            sudo chown -R $USER:$USER ${{ env.APP_DIR }}
+            cd ${{ env.APP_DIR }}
+
+            if [ ! -d ${{ env.APP_NAME }} ]; then
+              git clone https://github.com/ing-benson/bsconsulting-portal.git ${{ env.APP_NAME }}
+              cd ${{ env.APP_NAME }}
+            else
+              cd ${{ env.APP_NAME }}
+              git pull origin main
+            fi
+
+  run-container:
+    runs-on: ubuntu-latest
+    needs:
+      - download-update
+    steps:
+      - name: Run Container via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ vars.REMOTE_SERVER_HOST }}
+          username: ${{ vars.REMOTE_SERVER_USER }}
+          key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
+          port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
+          script: |
+            set -e
+            cd ${{ env.APP_DIR }}/${{ env.APP_NAME }}
+            sudo docker-compose down
+            sudo docker-compose build --no-cache
+            sudo docker-compose up -d
+
+      - name: Run Migrations
+        uses: appleboy/ssh-action@v1.2.0
+        # uses: ./.github/actions/ssh-run
+        with:
+          host: ${{ vars.REMOTE_SERVER_HOST }}
+          username: ${{ vars.REMOTE_SERVER_USER }}
+          key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
+          port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
+          script: |
+            cd ${{ env.APP_DIR }}/${{ env.APP_NAME }}
+            sudo docker-compose exec -T ${{ env.CONTAINER_NAME }} node ace migration:run --force
+            sudo docker-compose exec -T ${{ env.CONTAINER_NAME }} node ace db:seed
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - run-container
+  #   steps:
+  #     - name: Run Container via SSH
+  #       uses: appleboy/ssh-action@v1.2.0
+  #       with:
+  #         host: ${{ vars.REMOTE_SERVER_HOST }}
+  #         username: ${{ vars.REMOTE_SERVER_USER }}
+  #         key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
+  #         port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
+  #         script: |
+  #           set -e
+  #           sleep 20
+  #           curl -f http://localhost:3333 || (echo "❌ App not responding" && exit 1)
+
+  #           echo "✅Successful Deployment"
