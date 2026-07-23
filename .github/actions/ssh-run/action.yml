@@ -9,7 +9,7 @@ inputs:
     required: true
     description: "Remote server username"
   key:
-    required: true
+    required: true 
     description: "Private SSH key"
   port:
     required: true
