@@ -1,117 +1,124 @@
 // =========================================================
-// BSConsulting — script.js
+// BSConsulting â€” script.js
 // =========================================================
 
 /* ---------- 1. Traductions FR / EN ---------- */
 const translations = {
   fr: {
     "nav.solutions": "Solutions",
-    "nav.features": "Fonctionnalités",
-    "nav.testimonials": "Témoignages",
+    "nav.features": "FonctionnalitÃ©s",
+    "nav.testimonials": "TÃ©moignages",
     "nav.contact": "Contact",
-    "nav.cta": "Demander une démo",
+    "nav.cta": "Demander une dÃ©mo",
 
-    "hero.eyebrow": "Consultants ERPNext — basés en Haïti",
-    "hero.title": "L'ERP pensé pour la réalité haïtienne.",
-    "hero.subtitle": "Double devise HTG/USD, taxes locales, RH conforme à la loi haïtienne : BSConsulting déploie et configure ERPNext pour qu'il fonctionne vraiment comme votre entreprise, pas l'inverse.",
-    "hero.ctaPrimary": "Demander une démo",
+    "hero.eyebrow": "Consultants ERPNext â€” basÃ©s en HaÃ¯ti",
+    "hero.title": "L'ERP pensÃ© pour la rÃ©alitÃ© haÃ¯tienne.",
+    "hero.subtitle": "Double devise HTG/USD, taxes locales, RH conforme Ã  la loi haÃ¯tienne : BSConsulting dÃ©ploie et configure ERPNext pour qu'il fonctionne vraiment comme votre entreprise, pas l'inverse.",
+    "hero.ctaPrimary": "Demander une dÃ©mo",
     "hero.ctaSecondary": "Voir les modules",
-    "hero.trust1": "devises gérées nativement",
-    "hero.trust2": "modules déployés sur le terrain",
-    "hero.trust3": "support en français, sur place",
+    "hero.trust1": "devises gÃ©rÃ©es nativement",
+    "hero.trust2": "modules dÃ©ployÃ©s sur le terrain",
+    "hero.trust3": "support en franÃ§ais, sur place",
 
     "solutions.eyebrow": "Solutions ERPNext",
     "solutions.title": "Un module pour chaque partie de votre entreprise.",
-    "solutions.subtitle": "Nous configurons ERPNext module par module, en gardant le contexte haïtien à chaque étape : devises, taxes, imprimés officiels.",
+    "solutions.subtitle": "Nous configurons ERPNext module par module, en gardant le contexte haÃ¯tien Ã  chaque Ã©tape : devises, taxes, imprimÃ©s officiels.",
     "solutions.crm.title": "CRM & Ventes",
-    "solutions.crm.desc": "Prospect → Devis → Bon de livraison → Facture, avec règles de prix, remises et suivi de la relation client.",
+    "solutions.crm.desc": "Prospect â†’ Devis â†’ Bon de livraison â†’ Facture, avec rÃ¨gles de prix, remises et suivi de la relation client.",
     "solutions.pos.title": "Point de Vente",
-    "solutions.pos.desc": "Caisse rapide pour clients de passage, sessions multi-caissiers, programmes de fidélité et retours.",
+    "solutions.pos.desc": "Caisse rapide pour clients de passage, sessions multi-caissiers, programmes de fidÃ©litÃ© et retours.",
     "solutions.stock.title": "Gestion de Stock",
-    "solutions.stock.desc": "Multi-entrepôt, numéros de série et de lot, valorisation FIFO ou moyenne pondérée, transferts entre succursales.",
-    "solutions.fin.title": "Comptabilité & Finance",
-    "solutions.fin.desc": "Plan comptable haïtien, multi-devise HTG/USD, TCA, centres de coûts et états financiers en temps réel.",
+    "solutions.stock.desc": "Multi-entrepÃ´t, numÃ©ros de sÃ©rie et de lot, valorisation FIFO ou moyenne pondÃ©rÃ©e, transferts entre succursales.",
+    "solutions.fin.title": "ComptabilitÃ© & Finance",
+    "solutions.fin.desc": "Plan comptable haÃ¯tien, multi-devise HTG/USD, TCA, centres de coÃ»ts et Ã©tats financiers en temps rÃ©el.",
     "solutions.rh.title": "RH & Paie",
-    "solutions.rh.desc": "Structures salariales, ONA, IR selon le barème DGI, congés, notes de frais et bulletins de paie personnalisés.",
+    "solutions.rh.desc": "Structures salariales, ONA, IR selon le barÃ¨me DGI, congÃ©s, notes de frais et bulletins de paie personnalisÃ©s.",
     "solutions.buy.title": "Achats",
-    "solutions.buy.desc": "Demandes d'achat, bons de commande fournisseurs et réception de marchandises, connectés au stock et à la comptabilité.",
+    "solutions.buy.desc": "Demandes d'achat, bons de commande fournisseurs et rÃ©ception de marchandises, connectÃ©s au stock et Ã  la comptabilitÃ©.",
 
     "nav.services": "Services",
     "services.eyebrow": "Services offerts",
-    "services.title": "Au-delà du logiciel, un accompagnement complet.",
-    "services.subtitle": "De la mise en place initiale au support quotidien, BSConsulting reste à vos côtés à chaque étape.",
+    "services.title": "Au-delÃ  du logiciel, un accompagnement complet.",
+    "services.subtitle": "De la mise en place initiale au support quotidien, BSConsulting reste Ã  vos cÃ´tÃ©s Ã  chaque Ã©tape.",
     "services.s1.title": "Analyse & cadrage",
-    "services.s1.desc": "Étude de vos processus actuels et définition des modules et flux ERPNext adaptés à votre activité.",
-    "services.s2.title": "Intégration & migration",
-    "services.s2.desc": "Import de vos données existantes (clients, stock, comptabilité) et connexion avec vos outils actuels.",
-    "services.s3.title": "Formation des équipes",
-    "services.s3.desc": "Sessions pratiques, adaptées au rôle de chaque employé, pour une adoption rapide au quotidien.",
+    "services.s1.desc": "Ã‰tude de vos processus actuels et dÃ©finition des modules et flux ERPNext adaptÃ©s Ã  votre activitÃ©.",
+    "services.s2.title": "IntÃ©gration & migration",
+    "services.s2.desc": "Import de vos donnÃ©es existantes (clients, stock, comptabilitÃ©) et connexion avec vos outils actuels.",
+    "services.s3.title": "Formation des Ã©quipes",
+    "services.s3.desc": "Sessions pratiques, adaptÃ©es au rÃ´le de chaque employÃ©, pour une adoption rapide au quotidien.",
     "services.s4.title": "Support & maintenance",
-    "services.s4.desc": "Assistance continue, résolution rapide des incidents et mises à jour après la mise en production.",
+    "services.s4.desc": "Assistance continue, rÃ©solution rapide des incidents et mises Ã  jour aprÃ¨s la mise en production.",
     "services.c1.title": "Configuration sur mesure",
-    "services.c1.desc": "Adaptation des modules, imprimés officiels et rapports aux besoins spécifiques de votre secteur.",
+    "services.c1.desc": "Adaptation des modules, imprimÃ©s officiels et rapports aux besoins spÃ©cifiques de votre secteur.",
     "services.c2.title": "Accompagnement au changement",
-    "services.c2.desc": "Aide à la transition des équipes vers les nouveaux processus digitalisés, sans rupture d'activité.",
-    "services.c3.title": "Hébergement & infrastructure",
-    "services.c3.desc": "Mise en place sur serveur local à Port-au-Prince ou dans le nuage, avec sauvegardes régulières.",
+    "services.c2.desc": "Aide Ã  la transition des Ã©quipes vers les nouveaux processus digitalisÃ©s, sans rupture d'activitÃ©.",
+    "services.c3.title": "HÃ©bergement & infrastructure",
+    "services.c3.desc": "Mise en place sur serveur local Ã  Port-au-Prince ou dans le nuage, avec sauvegardes rÃ©guliÃ¨res.",
 
-    "features.eyebrow": "Fonctionnalités",
-    "features.title": "Conçu pour les réalités du marché haïtien.",
+    "features.eyebrow": "FonctionnalitÃ©s",
+    "features.title": "ConÃ§u pour les rÃ©alitÃ©s du marchÃ© haÃ¯tien.",
     "features.f1.title": "Double devise native",
-    "features.f1.desc": "Facturez en gourdes ou en dollars, avec taux de change saisis manuellement pour un contrôle total.",
-    "features.f2.title": "Conformité fiscale locale",
-    "features.f2.desc": "TCA, ONA, CFGDCT et barème IR de la DGI intégrés à vos documents et bulletins de paie, avec NIF affiché.",
+    "features.f1.desc": "Facturez en gourdes ou en dollars, avec taux de change saisis manuellement pour un contrÃ´le total.",
+    "features.f2.title": "ConformitÃ© fiscale locale",
+    "features.f2.desc": "TCA, ONA, CFGDCT et barÃ¨me IR de la DGI intÃ©grÃ©s Ã  vos documents et bulletins de paie, avec NIF affichÃ©.",
     "features.f3.title": "Multi-succursale",
-    "features.f3.desc": "Gérez plusieurs points de vente ou entrepôts sous une seule entité, avec des rapports consolidés ou séparés.",
-    "features.f4.title": "Rapports en temps réel",
-    "features.f4.desc": "Tableaux de bord de ventes, de marge et de trésorerie, actualisés à chaque transaction enregistrée.",
-    "features.f5.title": "Pensé pour l'hôtellerie",
-    "features.f5.desc": "Suivi de la rentabilité par client, centres de coûts dédiés et gestion adaptée aux besoins des hôtels et restaurants.",
-    "features.f6.title": "Déploiement local ou infonuagique",
-    "features.f6.desc": "Hébergement sur vos propres serveurs à Port-au-Prince ou dans le nuage, selon vos contraintes de connectivité.",
+    "features.f3.desc": "GÃ©rez plusieurs points de vente ou entrepÃ´ts sous une seule entitÃ©, avec des rapports consolidÃ©s ou sÃ©parÃ©s.",
+    "features.f4.title": "Rapports en temps rÃ©el",
+    "features.f4.desc": "Tableaux de bord de ventes, de marge et de trÃ©sorerie, actualisÃ©s Ã  chaque transaction enregistrÃ©e.",
+    "features.f5.title": "PensÃ© pour l'hÃ´tellerie",
+    "features.f5.desc": "Suivi de la rentabilitÃ© par client, centres de coÃ»ts dÃ©diÃ©s et gestion adaptÃ©e aux besoins des hÃ´tels et restaurants.",
+    "features.f6.title": "DÃ©ploiement local ou infonuagique",
+    "features.f6.desc": "HÃ©bergement sur vos propres serveurs Ã  Port-au-Prince ou dans le nuage, selon vos contraintes de connectivitÃ©.",
 
-    "testi.eyebrow": "Témoignages",
-    "testi.title": "Des entreprises qui pilotent leur activité avec ERPNext.",
-    "testi.note": "Contenu d'exemple — à remplacer par vos propres témoignages clients.",
-    "testi.t1.quote": "« Depuis le déploiement, notre facturation en gourdes et en dollars ne prend plus une seule minute d'hésitation. »",
-    "testi.t1.role": "Directrice financière, quincaillerie — Port-au-Prince",
-    "testi.t2.quote": "« L'équipe de BSConsulting a configuré nos bulletins de paie exactement selon les règles de la DGI. Un vrai gain de temps. »",
-    "testi.t2.role": "Responsable RH, groupe hôtelier — Pétion-Ville",
-    "testi.t3.quote": "« Nos deux succursales voient enfin le même stock en temps réel. Fini les écarts d'inventaire. »",
-    "testi.t3.role": "Gérante, distribution d'équipements — Delmas",
+    "testi.eyebrow": "TÃ©moignages",
+    "testi.title": "Des entreprises qui pilotent leur activitÃ© avec ERPNext.",
+    "testi.note": "Contenu d'exemple â€” Ã  remplacer par vos propres tÃ©moignages clients.",
+    "testi.t1.quote": "Â« Depuis le dÃ©ploiement, notre facturation en gourdes et en dollars ne prend plus une seule minute d'hÃ©sitation. Â»",
+    "testi.t1.role": "Directrice financiÃ¨re, quincaillerie â€” Port-au-Prince",
+    "testi.t2.quote": "Â« L'Ã©quipe de BSConsulting a configurÃ© nos bulletins de paie exactement selon les rÃ¨gles de la DGI. Un vrai gain de temps. Â»",
+    "testi.t2.role": "Responsable RH, groupe hÃ´telier â€” PÃ©tion-Ville",
+    "testi.t3.quote": "Â« Nos deux succursales voient enfin le mÃªme stock en temps rÃ©el. Fini les Ã©carts d'inventaire. Â»",
+    "testi.t3.role": "GÃ©rante, distribution d'Ã©quipements â€” Delmas",
 
     "contact.eyebrow": "Contact",
-    "contact.title": "Discutons de votre déploiement ERPNext.",
-    "contact.subtitle": "Décrivez votre activité et vos besoins : nous revenons vers vous avec une proposition adaptée à votre secteur.",
+    "contact.title": "Discutons de votre dÃ©ploiement ERPNext.",
+    "contact.subtitle": "DÃ©crivez votre activitÃ© et vos besoins : nous revenons vers vous avec une proposition adaptÃ©e Ã  votre secteur.",
     "contact.emailLabel": "Courriel",
-    "contact.phoneLabel": "Téléphone / WhatsApp",
+    "contact.phoneLabel": "TÃ©lÃ©phone / WhatsApp",
     "contact.locationLabel": "Localisation",
-    "contact.locationValue": "Delmas, Port-au-Prince, Haïti",
+    "contact.locationValue": "Delmas, Port-au-Prince, HaÃ¯ti",
     "contact.form.name": "Nom complet",
+    "contact.form.subject": "Objet",
+    "contact.form.subjectOptions.demo": "Demande de démo",
+    "contact.form.subjectOptions.quote": "Devis d'implémentation ERPNext",
+    "contact.form.subjectOptions.support": "Support technique",
+    "contact.form.subjectOptions.training": "Formation",
+    "contact.form.subjectOptions.partnership": "Partenariat",
+    "contact.form.subjectOptions.other": "Autre",
     "contact.form.email": "Adresse courriel",
     "contact.form.company": "Entreprise",
     "contact.form.message": "Votre besoin",
     "contact.form.submit": "Envoyer la demande",
-    "contact.form.success": "Merci ! Votre message a bien été noté, nous vous répondons sous peu.",
-    "contact.form.error": "Une erreur est survenue. Merci de réessayer ou de nous écrire directement par courriel.",
+    "contact.form.success":"Merci pour votre message ! Notre équipe l'a bien reçu et vous répondra sous 24 à 48 heures ouvrables.", //"Merci ! Votre message a bien Ã©tÃ© notÃ©, nous vous rÃ©pondons sous peu.",
+    "contact.form.error": "Une erreur est survenue. Merci de rÃ©essayer ou de nous Ã©crire directement par courriel.",
 
-    "footer.tagline": "Solutions ERPNext pour les entreprises haïtiennes.",
-    "footer.rights": "Tous droits réservés.",
+    "footer.tagline": "Solutions ERPNext pour les entreprises haÃ¯tiennes.",
+    "footer.rights": "Tous droits rÃ©servÃ©s.",
 
-    "ws.crm.title": "CRM · Pipeline des ventes",
+    "ws.crm.title": "CRM Â· Pipeline des ventes",
     "ws.crm.l1": "Devis actifs", "ws.crm.l2": "Taux de conversion", "ws.crm.l3": "Devise de base",
     "ws.crm.v1": "128", "ws.crm.v2": "34%", "ws.crm.v3": "HTG",
-    "ws.pos.title": "Point de Vente · Aujourd'hui",
+    "ws.pos.title": "Point de Vente Â· Aujourd'hui",
     "ws.pos.l1": "Ventes du jour", "ws.pos.l2": "Panier moyen", "ws.pos.l3": "Sessions ouvertes",
     "ws.pos.v1": "312", "ws.pos.v2": "1 450 HTG", "ws.pos.v3": "2",
-    "ws.stk.title": "Stock · Pétion-Ville & Delmas",
-    "ws.stk.l1": "Articles suivis", "ws.stk.l2": "Sous seuil minimum", "ws.stk.l3": "Entrepôts actifs",
+    "ws.stk.title": "Stock Â· PÃ©tion-Ville & Delmas",
+    "ws.stk.l1": "Articles suivis", "ws.stk.l2": "Sous seuil minimum", "ws.stk.l3": "EntrepÃ´ts actifs",
     "ws.stk.v1": "864", "ws.stk.v2": "17", "ws.stk.v3": "2",
-    "ws.fin.title": "Finance · Aperçu du mois",
-    "ws.fin.l1": "Marge brute", "ws.fin.l2": "Factures en attente", "ws.fin.l3": "Devise de référence",
+    "ws.fin.title": "Finance Â· AperÃ§u du mois",
+    "ws.fin.l1": "Marge brute", "ws.fin.l2": "Factures en attente", "ws.fin.l3": "Devise de rÃ©fÃ©rence",
     "ws.fin.v1": "41%", "ws.fin.v2": "23", "ws.fin.v3": "USD",
-    "ws.rh.title": "RH & Paie · Cycle en cours",
-    "ws.rh.l1": "Employés actifs", "ws.rh.l2": "Bulletins générés", "ws.rh.l3": "Prochaine paie",
+    "ws.rh.title": "RH & Paie Â· Cycle en cours",
+    "ws.rh.l1": "EmployÃ©s actifs", "ws.rh.l2": "Bulletins gÃ©nÃ©rÃ©s", "ws.rh.l3": "Prochaine paie",
     "ws.rh.v1": "46", "ws.rh.v2": "46", "ws.rh.v3": "5 j"
   },
   en: {
@@ -121,7 +128,7 @@ const translations = {
     "nav.contact": "Contact",
     "nav.cta": "Request a demo",
 
-    "hero.eyebrow": "ERPNext consultants — based in Haiti",
+    "hero.eyebrow": "ERPNext consultants â€” based in Haiti",
     "hero.title": "The ERP built for how Haiti really works.",
     "hero.subtitle": "Native HTG/USD dual currency, local taxes, HR that follows Haitian law: BSConsulting deploys and configures ERPNext to fit your business, not the other way around.",
     "hero.ctaPrimary": "Request a demo",
@@ -134,7 +141,7 @@ const translations = {
     "solutions.title": "A module for every part of your business.",
     "solutions.subtitle": "We configure ERPNext module by module, keeping the Haitian context in mind at every step: currencies, taxes, official documents.",
     "solutions.crm.title": "CRM & Sales",
-    "solutions.crm.desc": "Lead → Quotation → Delivery Note → Invoice, with pricing rules, discounts and relationship tracking.",
+    "solutions.crm.desc": "Lead â†’ Quotation â†’ Delivery Note â†’ Invoice, with pricing rules, discounts and relationship tracking.",
     "solutions.pos.title": "Point of Sale",
     "solutions.pos.desc": "Fast checkout for walk-in customers, multi-cashier sessions, loyalty programs and returns.",
     "solutions.stock.title": "Stock Management",
@@ -182,17 +189,17 @@ const translations = {
 
     "testi.eyebrow": "Testimonials",
     "testi.title": "Businesses running their operations on ERPNext.",
-    "testi.note": "Example content — replace with your own client testimonials.",
+    "testi.note": "Example content â€” replace with your own client testimonials.",
     "testi.t1.quote": "\"Since going live, billing in gourdes and dollars no longer costs us a minute of hesitation.\"",
-    "testi.t1.role": "CFO, hardware retailer — Port-au-Prince",
+    "testi.t1.role": "CFO, hardware retailer â€” Port-au-Prince",
     "testi.t2.quote": "\"BSConsulting set up our pay slips exactly to DGI rules. A real time saver.\"",
-    "testi.t2.role": "HR manager, hotel group — Pétion-Ville",
+    "testi.t2.role": "HR manager, hotel group â€” PÃ©tion-Ville",
     "testi.t3.quote": "\"Our two branches finally see the same stock in real time. No more inventory gaps.\"",
-    "testi.t3.role": "Manager, equipment distributor — Delmas",
+    "testi.t3.role": "Manager, equipment distributor â€” Delmas",
 
     "contact.eyebrow": "Contact",
     "contact.title": "Let's talk about your ERPNext rollout.",
-    "contact.subtitle": "Tell us about your business and needs — we'll get back to you with a proposal suited to your sector.",
+    "contact.subtitle": "Tell us about your business and needs â€” we'll get back to you with a proposal suited to your sector.",
     "contact.emailLabel": "Email",
     "contact.phoneLabel": "Phone / WhatsApp",
     "contact.locationLabel": "Location",
@@ -200,27 +207,34 @@ const translations = {
     "contact.form.name": "Full name",
     "contact.form.email": "Email address",
     "contact.form.company": "Company",
+    "contact.form.subject": "Subject",
+    "contact.form.subjectOptions.demo": "Demo request",
+    "contact.form.subjectOptions.quote": "ERPNext implementation quote",
+    "contact.form.subjectOptions.support": "Technical support",
+    "contact.form.subjectOptions.training": "Training",
+    "contact.form.subjectOptions.partnership": "Partnership",
+    "contact.form.subjectOptions.other": "Other",
     "contact.form.message": "What do you need?",
     "contact.form.submit": "Send request",
-    "contact.form.success": "Thanks! Your message has been received, we'll reply shortly.",
+    "contact.form.success":"Thank you for your message! Our team has received it and will get back to you within 24–48 business hours.", //"Thanks! Your message has been received, we'll reply shortly.",
     "contact.form.error": "Something went wrong. Please try again or email us directly.",
 
     "footer.tagline": "ERPNext solutions for Haitian businesses.",
     "footer.rights": "All rights reserved.",
 
-    "ws.crm.title": "CRM · Sales pipeline",
+    "ws.crm.title": "CRM Â· Sales pipeline",
     "ws.crm.l1": "Open quotations", "ws.crm.l2": "Conversion rate", "ws.crm.l3": "Base currency",
     "ws.crm.v1": "128", "ws.crm.v2": "34%", "ws.crm.v3": "HTG",
-    "ws.pos.title": "Point of Sale · Today",
+    "ws.pos.title": "Point of Sale Â· Today",
     "ws.pos.l1": "Today's sales", "ws.pos.l2": "Average basket", "ws.pos.l3": "Open sessions",
     "ws.pos.v1": "312", "ws.pos.v2": "HTG 1,450", "ws.pos.v3": "2",
-    "ws.stk.title": "Stock · Pétion-Ville & Delmas",
+    "ws.stk.title": "Stock Â· PÃ©tion-Ville & Delmas",
     "ws.stk.l1": "Items tracked", "ws.stk.l2": "Below reorder level", "ws.stk.l3": "Active warehouses",
     "ws.stk.v1": "864", "ws.stk.v2": "17", "ws.stk.v3": "2",
-    "ws.fin.title": "Finance · Month overview",
+    "ws.fin.title": "Finance Â· Month overview",
     "ws.fin.l1": "Gross margin", "ws.fin.l2": "Invoices pending", "ws.fin.l3": "Reference currency",
     "ws.fin.v1": "41%", "ws.fin.v2": "23", "ws.fin.v3": "USD",
-    "ws.rh.title": "HR & Payroll · Current cycle",
+    "ws.rh.title": "HR & Payroll Â· Current cycle",
     "ws.rh.l1": "Active employees", "ws.rh.l2": "Slips generated", "ws.rh.l3": "Next payroll",
     "ws.rh.v1": "46", "ws.rh.v2": "46", "ws.rh.v3": "5 d"
   }
@@ -248,13 +262,17 @@ function applyLanguage(lang){
 }
 
 /* ---------- 2ter. Lien WhatsApp flottant ---------- */
-function updateWhatsAppLink(lang){
-  const btn = document.getElementById('whatsappBtn');
-  if (!btn) return;
-  const message = lang === 'en'
-    ? "Hello, I'd like to know more about ERPNext for my business."
-    : "Bonjour, je souhaite en savoir plus sur ERPNext pour mon entreprise.";
-  btn.href = `https://wa.me/50900000000?text=${encodeURIComponent(message)}`;
+function updateWhatsAppLink(lang) {
+    const btn = document.getElementById('whatsappBtn');
+
+    if (!btn) return;
+    const phone = btn.getAttribute('data-phone') || btn.alt;
+
+    const message = lang === 'en'
+        ? "Hello, I'd like to know more about ERPNext for my business."
+        : "Bonjour, je souhaite en savoir plus sur ERPNext pour mon entreprise.";
+
+    btn.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
 function initLanguage(){
@@ -269,7 +287,7 @@ function initLanguage(){
   });
 }
 
-/* ---------- 2bis. Thème clair / sombre ---------- */
+/* ---------- 2bis. ThÃ¨me clair / sombre ---------- */
 function applyTheme(theme){
   document.documentElement.setAttribute('data-theme', theme);
   const btn = document.getElementById('themeToggle');
@@ -306,7 +324,7 @@ function initMobileNav(){
   }));
 }
 
-/* ---------- 4. Animation du mockup ERPNext (élément signature) ---------- */
+/* ---------- 4. Animation du mockup ERPNext (Ã©lÃ©ment signature) ---------- */
 const wsModules = ['crm','pos','stk','fin','rh'];
 let wsIndex = 0;
 let wsTimer = null;
@@ -345,55 +363,136 @@ function initWorkspaceCycle(){
   }, 3200);
 }
 
-/* ---------- 5. Formulaire de contact (connecté à /api/contact.php) ---------- */
-function initContactForm(){
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  const submitBtn = form.querySelector('button[type="submit"]');
+/* ---------- 5. Formulaire de contact (connectÃ© Ã  /api/contact.php) ---------- */
+// function initContactForm(){
+//   const form = document.getElementById('contactForm');
+//   const success = document.getElementById('formSuccess');
+//   const submitBtn = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()){
-      form.reportValidity();
-      return;
-    }
+//   form.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     if (!form.checkValidity()){
+//       form.reportValidity();
+//       return;
+//     }
 
-    const lang = document.documentElement.getAttribute('data-lang') || 'fr';
-    const payload = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      company: form.company.value.trim(),
-      message: form.message.value.trim(),
-      lang
-    };
+//     const lang = document.documentElement.getAttribute('data-lang') || 'fr';
+//     const payload = {
+//       name: form.name.value.trim(),
+//       email: form.email.value.trim(),
+//       subject: form.subject.value.trim(),
+//       phone: form.phone.value.trim(),
+//       company: form.company.value.trim(),
+//       message: form.message.value.trim(),
+//       lang
+//     };
 
-    submitBtn.disabled = true;
+//     submitBtn.disabled = true;
 
-    try {
-      const res = await fetch('/api/contact.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
+//     try {
+//       const res = await fetch('/api/message', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(payload)
+//       });
+//       const data = await res.json();
+//       console.log(data);
+      
+//       if (res.ok && data.success){
+//         success.textContent = translations[lang]['contact.form.success'];
+//         success.classList.remove('is-error');
+//         success.classList.add('is-visible');
+//         form.reset();
+//       } else {
+//         success.textContent = translations[lang]['contact.form.error'];
+//         success.classList.add('is-visible', 'is-error');
+//       }
+//     } catch (err) {
+//       success.textContent = translations[lang]['contact.form.error'];
+//       success.classList.add('is-visible', 'is-error');
+//     } finally {
+//       submitBtn.disabled = false;
+//       setTimeout(() => success.classList.remove('is-visible', 'is-error'), 6000);
+//     }
+//   });
+// }
 
-      if (res.ok && data.success){
-        success.textContent = translations[lang]['contact.form.success'];
-        success.classList.remove('is-error');
-        success.classList.add('is-visible');
-        form.reset();
-      } else {
-        success.textContent = translations[lang]['contact.form.error'];
-        success.classList.add('is-visible', 'is-error');
-      }
-    } catch (err) {
-      success.textContent = translations[lang]['contact.form.error'];
-      success.classList.add('is-visible', 'is-error');
-    } finally {
-      submitBtn.disabled = false;
-      setTimeout(() => success.classList.remove('is-visible', 'is-error'), 6000);
-    }
-  });
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const lang = document.documentElement.getAttribute('data-lang') || 'fr';
+
+        const payload = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            subject: form.subject.value.trim(),
+            phone: form.phone.value.trim(),
+            company: form.company.value.trim(),
+            message: form.message.value.trim(),
+            lang
+        };
+
+        submitBtn.disabled = true;
+
+        try {
+            const res = await fetch('/api/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+
+                await Swal.fire({
+                    icon: 'success',
+                    title: lang === 'fr' ? 'Message envoyé !' : 'Message Sent!',
+                    text: translations[lang]['contact.form.success'],
+                    confirmButtonText: lang === 'fr' ? 'OK' : 'OK',
+                    confirmButtonColor: '#3085d6'
+                });
+
+                form.reset();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: lang === 'fr' ? 'Erreur' : 'Error',
+                    text: data.message || translations[lang]['contact.form.error'],
+                    confirmButtonText: lang === 'fr' ? 'Fermer' : 'Close',
+                    confirmButtonColor: '#d33'
+                });
+
+            }
+
+        } catch (err) {
+
+            Swal.fire({
+                icon: 'error',
+                title: lang === 'fr' ? 'Erreur de connexion' : 'Connection Error',
+                text: translations[lang]['contact.form.error'],
+                confirmButtonText: lang === 'fr' ? 'Fermer' : 'Close',
+                confirmButtonColor: '#d33'
+            });
+
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
 }
 
 /* ---------- 6. Init ---------- */
