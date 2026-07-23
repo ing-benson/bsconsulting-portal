@@ -30,7 +30,7 @@ jobs:
             sudo mkdir -p ${{ env.APP_DIR }}
             sudo chown -R ${{ vars.REMOTE_SERVER_USER }}:${{ vars.REMOTE_SERVER_USER }} ${{ env.APP_DIR }}/${{env.APP_NAME}}
             cd ${{ env.APP_DIR }}
-
+ 
             if [ ! -d ${{ env.APP_NAME }} ]; then
               git clone https://github.com/ing-benson/bsconsulting-portal.git ${{ env.APP_NAME }}
               cd ${{ env.APP_NAME }}
