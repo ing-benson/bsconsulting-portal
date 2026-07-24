@@ -27,8 +27,8 @@ jobs:
           port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
           script: |
             set -e 
-             mkdir -p ${{ env.APP_DIR }}
-             chown -R ${{ vars.REMOTE_SERVER_USER }}:${{ vars.REMOTE_SERVER_USER }} ${{ env.APP_DIR }}/${{env.APP_NAME}}
+            sudo mkdir -p ${{ env.APP_DIR }}
+            sudo chown -R ${{ vars.REMOTE_SERVER_USER }}:${{ vars.REMOTE_SERVER_USER }} ${{ env.APP_DIR }}/${{env.APP_NAME}}
             cd ${{ env.APP_DIR }}
  
             if [ ! -d ${{ env.APP_NAME }} ]; then
@@ -54,22 +54,22 @@ jobs:
           script: |
             set -e
             cd ${{ env.APP_DIR }}/${{ env.APP_NAME }}
-             docker compose down
-             docker compose build --no-cache
-             docker compose up -d
+            sudo docker compose down
+            sudo docker compose build 
+            sudo docker compose up -d
 
-      - name: Run Migrations
-        uses: appleboy/ssh-action@v1.2.0
-        # uses: ./.github/actions/ssh-run
-        with:
-          host: ${{ vars.REMOTE_SERVER_HOST }}
-          username: ${{ vars.REMOTE_SERVER_USER }}
-          key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
-          port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
-          script: |
-            cd ${{ env.APP_DIR }}/${{ env.APP_NAME }}
-             docker compose exec -T ${{ env.CONTAINER_NAME }} node ace migration:run --force
-             docker compose exec -T ${{ env.CONTAINER_NAME }} node ace db:seed
+      #- name: Run Migrations
+        # uses: appleboy/ssh-action@v1.2.0
+        # # uses: ./.github/actions/ssh-run
+        # with:
+        #   host: ${{ vars.REMOTE_SERVER_HOST }}
+        #   username: ${{ vars.REMOTE_SERVER_USER }}
+        #   key: ${{ vars.HOSTBABY_SSH_PRIVATE_KEY }}
+        #   port: ${{ vars.REMOTE_SERVER_SSH_PORT }}
+        #   script: |
+        #     cd ${{ env.APP_DIR }}/${{ env.APP_NAME }}
+        #     sudo docker compose exec -T ${{ env.CONTAINER_NAME }} node ace migration:run --force
+        #     sudo docker compose exec -T ${{ env.CONTAINER_NAME }} node ace db:seed
   # test:
   #   runs-on: ubuntu-latest
   #   needs:
